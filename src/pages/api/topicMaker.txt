@@ -1,0 +1,35 @@
+import { Configuration, OpenAIApi } from "openai-edge";
+
+const openAIConfiguration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(openAIConfiguration);
+
+export const runtime = "edge";
+
+export default async function handler(req: Request) {
+  try {
+    // 사용자의 첫 대화를 요약하는 로직을 구현
+    const firstMessage = req.body.messages[0].content; // 사용자의 첫 대화 내용을 가져옴
+
+    // 대화 내용을 요약하고 topicName을 생성
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      temperature: 0,
+      max_tokens: 1024,
+      messages: [{
+        role: "system",
+        content: `대화 불러오기용 짧은 제목 생성`}, // 시스템 메시지를 추가하여 요약을 유도
+        { role: "user", content: firstMessage }], // 사용자의 첫 대화를 추가
+    });
+
+    const topicName = response.choices[0].message.content; // 요약 결과를 가져옴
+
+    // 요약된 topicName을 반환
+    return { topicName };
+  } catch (error) {
+    console.error("Error generating topicName:", error);
+    return { error: "Error generating topicName" };
+  }
+}
