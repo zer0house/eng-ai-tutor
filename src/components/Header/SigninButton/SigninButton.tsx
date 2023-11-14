@@ -1,59 +1,45 @@
 import { useState, useEffect } from 'react';
 import { SigninWrapper, LoginButton, LogoutButton, } from './SigninButton.styled';
-import { useSession, signIn, signOut } from 'next-auth/react';
-
-interface CustomSession {
-  user: {
-    name: string;
-    id: string;
-  }
-}
+import { useRouter } from 'next/router';
 
 const SigninButton = () => {
-  // 로그인 세팅
+  const router = useRouter();
+  // 로그인 상태를 로컬 스토리지의 정보를 기반으로 설정합니다.
   const [loggedIn, setLoggedIn] = useState(false);
-    const { data: session } = useSession({
-      required: false
-    }) as { data: CustomSession | null };
-
-    const handleLogin = async () => {
-    try {
-      await signIn();
-    } catch (error) {
-      console.error('Error during sign in: ', error);
-      alert("로그인 에러. 페이지에 다시 접속해주세요😥 \n오류가 지속되면 관리자에게 말해주세요🤔");
-    }
-    };
 
   useEffect(() => {
-    if (session && !loggedIn) {
+    const userClass = localStorage.getItem('userClass');
+    const userTeam = localStorage.getItem('userTeam');
+
+    if (userClass && userTeam) {
       setLoggedIn(true);
-    } else if (!session) {
+    } else {
       setLoggedIn(false);
     }
-    // Update the 'userName' and 'userId' states if the session user information changes
-    // if (session && session.user) {
-    //   setUserName(session.user?.name);
-    //   setUserId(session.user?.id);
-    //   console.log('session :', session);
-    //   console.log('session.user :', session.user);
-    //   console.log('session.user.name :', session.user.name);
-    //   console.log('session.user.id :', session.user.id);
-    // }
-  }, [session, loggedIn]);
+  }, []);
 
-  
+  const handleLogin = () => {
+    // 로그인 버튼 클릭 시 로그인 페이지로 리디렉션
+    router.push('/signin');
+  };
+
+  const handleLogout = () => {
+    // 로그아웃 로직
+    localStorage.removeItem('userClass');
+    localStorage.removeItem('userTeam');
+    setLoggedIn(false);
+    router.replace('/');
+  };
+
   return (
     <SigninWrapper>
-        {!session ? (
-            <LoginButton onClick={handleLogin}>로그인</LoginButton>
-        ) : (
-            <>
-                <LogoutButton onClick={() => signOut()}>로그아웃</LogoutButton>
-            </>
-        )}
+      {!loggedIn ? (
+        <LoginButton onClick={handleLogin}>로그인</LoginButton>
+      ) : (
+        <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+      )}
     </SigninWrapper>
-);
+  );
 }
 
 export default SigninButton;

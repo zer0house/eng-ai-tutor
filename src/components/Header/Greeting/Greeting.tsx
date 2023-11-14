@@ -2,12 +2,13 @@
 import { Greeting as GreetingStyled } from './Greeting.Styled';
 
 interface GreetingProps {
-  userName: string;
+  userClass: string | null;
+  userTeam: string | null;
 }
 
-const Greeting: React.FC<GreetingProps> = ({ userName }) => (
+const Greeting: React.FC<GreetingProps> = ({ userClass, userTeam }) => (
     <GreetingStyled>
-        {userName}님, <br/>
+        1학년 {userClass}반 {userTeam}모둠 분들, <br/>
         안녕하세요😀
     </GreetingStyled>
 );

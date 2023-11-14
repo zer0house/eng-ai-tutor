@@ -15,12 +15,11 @@ import {
 
 interface HeaderProps {
   userData: {
-    userSchool: string | null;
-    userStuID: number | null;
-    userName: string | null;
-    userIDCode: string | null;
+    userClass: string | null;
+    userTeam: string | null;
     botID: string | null;
-    botName: string | null;    
+    botName: string | null;  
+    topicID: string | null;  
   } | null;
 }
 
@@ -51,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ userData }) => {
         </MobileImage>
         <div>
           <div>
-            과학봇 <EnglishName>(Sci-Ai-Tutor)</EnglishName>
+            라잇미 <EnglishName>(Write-Me)</EnglishName>
           </div>
           <OnlineDot>
             <FiUser />
@@ -62,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ userData }) => {
       <IconWapper>
         
       </IconWapper>
-      <MenuExpansion userName={userData?.userName || null} isVisible={isMenuVisible} onToggle={handleMenuToggle} />
+      <MenuExpansion userData={userData} isVisible={isMenuVisible} onToggle={handleMenuToggle} />
     </Wrapper>
   );
 };

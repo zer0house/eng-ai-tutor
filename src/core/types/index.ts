@@ -30,10 +30,8 @@ export type CreateChatCompletionRequest = {
 }
 
 export type UserData = {
-  userSchool: string | null;
-  userStuID: number | null;
-  userName: string | null;
-  userIDCode: string | null;
+  userClass: string | null;
+  userTeam: string | null;
   botID: string | null;
   botName: string | null;
   topicID: string | null;
@@ -69,10 +67,4 @@ export interface ProviderDetail {
   // adjust the properties to match the actual shape of your provider objects
   name: string;
   id: string;
-}
-
-export interface Providers {
-  kakao: ProviderDetail;
-  google: ProviderDetail;
-  naver: ProviderDetail;
 }

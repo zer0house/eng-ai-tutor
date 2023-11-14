@@ -19,13 +19,20 @@ import { Greeting } from './Greeting';
 interface MenuExpansionProps {
     isVisible: boolean;
     onToggle: () => void;  // New prop for toggling menu visibility
-    userName: string | null;  // 여기에서 타입을 업데이트합니다.
+    userData: {
+      userClass: string | null;
+      userTeam: string | null;
+      botID: string | null;
+      botName: string | null;  
+      topicID: string | null;  
+    } | null;
 }
 
 
-const MenuExpansion: React.FC<MenuExpansionProps> = ({ isVisible, onToggle, userName }) => { 
+const MenuExpansion: React.FC<MenuExpansionProps> = ({ isVisible, onToggle, userData }) => { 
     const ref = React.useRef<HTMLDivElement>(null);
-
+    const userClass = userData?.userClass ?? 'Guest';  // userName이 null일 경우 기본값으로 'Guest'를 사용합니다.
+    const userTeam = userData?.userTeam ?? 'Guest';  // userName이 null일 경우 기본값으로 'Guest'를 사용합니다.
     const handleClickOutside = (event: MouseEvent) => {
         if (ref.current && !ref.current.contains(event.target as Node) && isVisible) {  // Check if isVisible is true
             onToggle();
@@ -44,7 +51,7 @@ const MenuExpansion: React.FC<MenuExpansionProps> = ({ isVisible, onToggle, user
             <ExpansionWrapper ref={ref} style={{ transform: isVisible ? 'translateX(0)' : 'translateX(100%)' }}>
                 <CloseButtonWrapper onClick={onToggle}>
                     <FiChevronRight size={24} />  {/* Use right arrow icon */}
-                    <Greeting userName={userName || 'Guest'} />  {/*userName이 null일 경우 기본값으로 'Guest'를 사용합니다.*/}
+                    <Greeting userClass={userClass} userTeam={userTeam} />
                 </CloseButtonWrapper>
                 <MenuContent>
                     <MenuContentCenter>

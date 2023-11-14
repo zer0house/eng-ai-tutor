@@ -93,10 +93,8 @@ const Input: React.FC<InputProps> = ({userData}) => {
       try {
         // 새 문서를 추가하고 생성된 참조를 얻습니다.
         const docRef = await addDoc(collection(db, "chatCollection"), {
-          userSchool: userData.userSchool,
-          userStuID: userData.userStuID,
-          userName: userData.userName,
-          userIDCode: userData.userIDCode,
+          userClass: userData.userClass,
+          userTeam: userData.userTeam,
           botID: userData.botID,
           botName: userData.botName,
           topicID: userData.topicID,

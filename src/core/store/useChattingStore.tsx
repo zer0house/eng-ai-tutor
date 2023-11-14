@@ -24,10 +24,8 @@ export const useChattingStore = create(
       fixWelcomeMessage: async (content, userData) => {
         try {
           const docRef = await addDoc(collection(db, "chatCollection"), {
-            userSchool: userData.userSchool,
-            userStuID: userData.userStuID,
-            userName: userData.userName,
-            userIDCode: userData.userIDCode,
+            userClass: userData.userClass,
+            userTeam: userData.userTeam,
             botID: userData.botID,
             botName: userData.botName,
             topicID: userData.topicID,
@@ -64,10 +62,8 @@ export const useChattingStore = create(
         // Firestore에 데이터 저장
         try {
           const docRef = await addDoc(collection(db, "chatCollection"), {
-            userSchool: userData.userSchool,
-            userStuID: userData.userStuID,
-            userName: userData.userName,
-            userIDCode: userData.userIDCode,
+            userClass: userData.userClass,
+            userTeam: userData.userTeam,
             botID: userData.botID,
             botName: userData.botName,
             topicID: userData.topicID,

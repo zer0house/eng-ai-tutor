@@ -1,8 +1,5 @@
 // src\pages\signin\signin.styled.ts
 import styled from '@emotion/styled';
-import googleLogo from './google_login.png'; // 336px * 90px
-import kakaoLogo from './kakao_login.png'; // 336px * 90px
-import naverLogo from './naver_login.png'; // 750px * 200px
 
 
 
@@ -39,38 +36,6 @@ export const SignInButton = styled.button`
   }
 `;
 
-export const GoogleButton = styled(SignInButton)`
-  background-color: #DB4437;
-  background-image: url(${googleLogo.src});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto 70px;  // 비율 유지 및 크기 조정
-  &:hover, &:focus {
-    background-color: #c63426;
-  }
-`;
-
-export const KakaoButton = styled(SignInButton)`
-  background-color: #FFEB00;
-  background-image: url(${kakaoLogo.src});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto 70px;  // 비율 유지 및 크기 조정
-  &:hover, &:focus {
-    background-color: #e5d700;
-  }
-`;
-
-export const NaverButton = styled(SignInButton)`
-  background-color: #03C75A;
-  background-image: url(${naverLogo.src});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto 80px;  // 비율 유지 및 크기 조정
-  &:hover, &:focus {
-    background-color: #029b4a;
-  }
-`;
 
 export const Image = styled.div`
   height: 150px;

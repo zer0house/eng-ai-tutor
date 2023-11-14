@@ -53,7 +53,7 @@ const Body: React.FC<BodyProps> = ({userData}) => {
     fixWelcomeMessage(FIX_INIT_MESSAGE, userData).catch(error => {
         console.error("Error calling fixWelcomeMessage:", error);
     });
-  }, [userData?.userIDCode, fixWelcomeMessage]);
+  }, [userData?.userClass , userData?.userTeam, fixWelcomeMessage]);
 
   useEffect(() => {
     if (!userData) return;
@@ -102,10 +102,8 @@ const Body: React.FC<BodyProps> = ({userData}) => {
         try {
           // 새 문서를 추가하고 생성된 참조를 얻습니다.
           const docRef = await addDoc(collection(db, "chatCollection"), {
-            userSchool: userData.userSchool,
-            userStuID: userData.userStuID,
-            userName: userData.userName,
-            userIDCode: userData.userIDCode,
+            userClass: userData.userClass,
+            userTeam: userData.userTeam,
             botID: userData.botID,
             botName: userData.botName,
             topicID: userData.topicID,
@@ -141,7 +139,7 @@ const Body: React.FC<BodyProps> = ({userData}) => {
     };
   
     GenWelcomeMessage();
-  }, [userData?.userIDCode, fingerprint, setError, updateAssistantMessage]);
+  }, [userData?.userClass, userData?.userTeam, fingerprint, setError, updateAssistantMessage]);
   
 
   return (

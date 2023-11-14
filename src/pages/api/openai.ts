@@ -24,8 +24,8 @@ export default async function handler(req: Request) {
   const { messages: initialMessages, userData } = await req.json();
   const messages = Array.isArray(initialMessages) ? initialMessages : [];
   const botName = userData?.botName || '아직 정해지지 않음';
-  const userName = userData?.userName || '모름';
-  const userSchool = userData?.userSchool || '모름';
+  const userClass = userData?.userClass || '모름';
+  const userTeam = userData?.userTeam || '모름';
   const todayDateTime = () => dayjs().format('YYYY년 MM월 DD일 HH시 mm분 ss초');
 
   // Ask OpenAI for a streaming chat completion given the prompt
@@ -37,7 +37,7 @@ export default async function handler(req: Request) {
     messages: [{
       role: "system",
       content: `ASSISTANT의 이름은 ${botName}. 
-      USER의 이름은 ${userName}, 학교는 ${userSchool}, 지금은 ${todayDateTime()}.
+      USER의 모둠은 '1학년 ${userClass}반 ${userTeam}모둠', 학교는 서울에 위치한 장평중학교, 지금은 ${todayDateTime()}.
       <USER 학습 내용> ${LEARNING_CONTENT}</USER 학습 내용>,
       <ASSISTANT 규칙> ${SYSTEM_PROMPT} </ASSISTANT 규칙>`},
       ...messages], // 이전의 대화 내용 10개를 포함하여 전송 <-- 멀티턴 기능
