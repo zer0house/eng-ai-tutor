@@ -38,8 +38,10 @@ export default async function handler(req: Request) {
       role: "system",
       content: `ASSISTANT의 이름은 ${botName}. 
       USER의 모둠은 '1학년 ${userClass}반 ${userTeam}모둠', 학교는 서울에 위치한 장평중학교, 지금은 ${todayDateTime()}.
-      <USER 학습 내용> ${LEARNING_CONTENT}</USER 학습 내용>,
-      <ASSISTANT 규칙> ${SYSTEM_PROMPT} </ASSISTANT 규칙>`},
+      'ASSISTANT 규칙'은 다음과 같다: <ASSISTANT 규칙> ${SYSTEM_PROMPT} </ASSISTANT 규칙>
+      'USER의 학교 학습 내용'은 다음과 같다: <USER의 학교 학습 내용> ${LEARNING_CONTENT}</USER의 학교 학습 내용>,
+      'ASSISTANT 규칙'을 지켜서 답변해줘.
+      `},
       ...messages], // 이전의 대화 내용 10개를 포함하여 전송 <-- 멀티턴 기능
   });
 

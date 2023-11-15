@@ -38,3 +38,15 @@ npm install next-auth
 npm install styled-components
 
 npm install firebase
+
+
+### google-spreadsheet
+https://theoephraim.github.io/node-google-spreadsheet/#/
+https://www.npmjs.com/package/google-spreadsheet 
+https://developers.google.com/sheets/api/reference/rest?hl=ko
+https://www.youtube.com/watch?v=MiPpQzW_ya0
+https://wickedmagica.tistory.com/286
+```
+npm i google-spreadsheet --save
+npm install google-auth-library
+```
