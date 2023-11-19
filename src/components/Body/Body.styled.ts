@@ -30,21 +30,21 @@ export const Date = styled.div`
 
 export const Button = styled.button`
   position: fixed;
-  top: 90px;
+  bottom: 130px;
   ${mediaQuery(TABLET_BREAK_POINT)} {
-    top: 80px;
+    bottom: 110px;
   }
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: var(--point-color-0);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background-color: #45a049;
+    background-color: var(--point-color-0);
   }
   
 
