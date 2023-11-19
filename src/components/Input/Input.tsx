@@ -74,7 +74,7 @@ const Input: React.FC<InputProps> = ({userData}) => {
         return;
       }
       const reader = data.getReader();
-      const decoder = new TextDecoder();
+      const decoder = new TextDecoder("utf-8");
 
       let done = false;
       let messageResponse = '';
@@ -146,7 +146,7 @@ const Input: React.FC<InputProps> = ({userData}) => {
       <ChatTextArea
         ref={textareaRef}
         onChange={onChange}
-        placeholder={hasError ? '에러가 발생했습니다. 새로고침해주세요.' : '과학에 대해서 궁금한 걸 물어보세요!'}
+        placeholder={hasError ? '에러가 발생했습니다. 새로고침해주세요.' : '영어 작문에 대해서 궁금한 걸 물어보세요!'}
         disabled={disabled}
         onKeyDown={onKeyDown}
       />

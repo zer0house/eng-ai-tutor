@@ -40,7 +40,7 @@ export const useChattingStore = create(
           // 생성된 메세지의 ID를 ChatID로 지정
           await updateDoc(docRef, { chatID: docRef.id });
           console.log("[fixWelcomeMessage] Document written with ID: ", docRef.id);
-      
+
           // 메세지 객체 생성과 상태 업데이트는 try 블록 안에서 수행
           const message: Message = {
             id: docRef.id,

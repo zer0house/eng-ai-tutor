@@ -84,7 +84,7 @@ const Body: React.FC<BodyProps> = ({userData}) => {
           return;
         }
         const reader = data.getReader();
-        const decoder = new TextDecoder();
+        const decoder = new TextDecoder("utf-8");
   
         let done = false;
         let messageResponse = '';
