@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef } from 'react';
 import { useChattingActions, useChattingStore } from '@/core/store';
 import { FIX_INIT_MESSAGE, GEN_INIT_MESSAGE } from '@/constants';
-import { Wrapper, Date } from './Body.styled';
+import { Wrapper, Date, Button } from './Body.styled';
 import { Message } from './Message';
 import TypingSpinner from './Message/TypingSpinner';
 import { BodyProps } from '@/core/types';
@@ -142,6 +142,15 @@ const Body: React.FC<BodyProps> = ({userData}) => {
   }, [userData?.userClass, userData?.userTeam, fingerprint, setError, updateAssistantMessage]);
   
 
+  const copyChatToClipboard = () => {
+    const chatMessages = messages.map(m => `${m.role}: ${m.content}`).join('\n');
+    navigator.clipboard.writeText(chatMessages).then(() => {
+      console.log('Chat copied to clipboard!');
+    }).catch(err => {
+      console.error('Failed to copy chat:', err);
+    });
+  };
+
   return (
     <Wrapper ref={scrollRef}>
       <div ref={messagesBodyRef}>
@@ -157,6 +166,7 @@ const Body: React.FC<BodyProps> = ({userData}) => {
         })}
         {isWaiting && <TypingSpinner />}
       </div>
+      <Button onClick={copyChatToClipboard}>Copy Chat</Button> {/* 대화 내용 복사 */}
     </Wrapper>
   );
 };

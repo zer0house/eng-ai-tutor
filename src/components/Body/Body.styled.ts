@@ -1,3 +1,5 @@
+import { TABLET_BREAK_POINT } from '@/constants';
+import { mediaQuery } from '@/styles/mediaQuery';
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.section`
@@ -23,4 +25,27 @@ export const Date = styled.div`
   align-items: center;
   justify-content: center;
   color: var(--text-color);
+`;
+
+
+export const Button = styled.button`
+  position: fixed;
+  top: 90px;
+  ${mediaQuery(TABLET_BREAK_POINT)} {
+    top: 80px;
+  }
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #45a049;
+  }
+  
+
 `;
