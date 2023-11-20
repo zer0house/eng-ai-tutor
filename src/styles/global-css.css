@@ -12,6 +12,7 @@
     height: 100%;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif; /* Noto Sans KR 폰트 적용 */
   }
 
   #__next {
